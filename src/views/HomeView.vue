@@ -24,5 +24,5 @@ export default defineComponent({
     ],
     showNewForm: false
   })
-});
+} as any);
 </script>

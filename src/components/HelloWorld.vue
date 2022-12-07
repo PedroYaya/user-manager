@@ -10,19 +10,17 @@
 <script lang="ts">
 import { defineComponent } from 'vue';
 import type { PropType } from 'vue';
-import type { Restaurant } from '@/types';
+import type { RestaurantList } from '@/types';
 
 
 export default defineComponent({
   name: 'HelloWorld',
   props: {
     items: {
-      type: Array,
-      default: () => []
+      type: Object as PropType<RestaurantList>,
     },
-
   },
-});
+} as any);
 </script>
 
 <!-- Add "scoped" attribute to limit CSS to this component only -->
