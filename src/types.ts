@@ -1,11 +1,10 @@
-export type Restaurant = {
-  name: string
+export type User = {
+  name: string,
+  id: string
 }
 
-export type RestaurantList = Restaurant[];
+export type UserList = User[];
 
 export type DataShape = {
-  filterText: string,
-  restaurantList: Restaurant[],
-  showNewForm: boolean
+  userList: User[]
 }

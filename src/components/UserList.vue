@@ -1,24 +1,24 @@
 <template>
   <div class="hello">
-    <h1>{{ filterText }}</h1>
-    <div v-for="(item, index) in items" :key="index">
-      <span>{{ item.name }}</span>
+    <div v-for="(user, index) in getUsers" :key="index">
+      <span>{{ user.id }}</span>
     </div>
   </div>
 </template>
 
 <script lang="ts">
 import { defineComponent } from 'vue';
-import type { PropType } from 'vue';
-import type { RestaurantList } from '@/types';
-
+import { mapGetters } from 'vuex';
 
 export default defineComponent({
-  name: 'HelloWorld',
-  props: {
-    items: {
-      type: Object as PropType<RestaurantList>,
-    },
+  name: 'UserList',
+  async created() {
+    await this.$store.dispatch('getUsersFromApi');
+  },
+  computed: {
+    ...mapGetters([
+      "getUsers"
+    ])
   },
 } as any);
 </script>
