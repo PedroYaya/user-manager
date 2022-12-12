@@ -6,6 +6,12 @@
         @open-delete-modal="openDeleteModal"
       ></UserCard>
     </div>
+
+    <DeleteModal 
+      v-if="showDeleteModal"
+      @close="closeDeleteModal"
+      @delete-user="deleteUser"
+    />
   </div>
 </template>
 
@@ -22,6 +28,13 @@ export default defineComponent({
     await this.$store.dispatch('getUsersFromApi');
   },
 
+  data() {
+    return {
+      showDeleteModal: false,
+      selectedUserId: null
+    }
+  },
+
   components: {
     UserCard
   },
@@ -34,9 +47,17 @@ export default defineComponent({
 
    methods: {
     openDeleteModal(user: User) {
-      //this.showDeleteModal = true;
-      //this.selectedUserId = user.id;
+    // this.showDeleteModal = true;
+    // this.selectedUserId = user.id;
     },
+    closeDeleteModal() {
+    // this.showDeleteModal = false;
+    // this.selectedUserId = null;
+    },
+    deleteUser() {
+    // this.$store.dispatch('deleteUser', this.selectedUserId);
+      this.closeDeleteModal();
+    }
   }
 } as any);
 </script>

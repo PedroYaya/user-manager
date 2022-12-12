@@ -31,7 +31,7 @@ export default createStore({
       const index = users.findIndex((elem: User) => elem.id === user.id );
       users.splice(index, 1, user);
     },
-    deleteUser(store, id) {
+    deleteUser(store, id: number) {
       const users = _.get(store, 'state.users') || [];
       const index = store.state.users.findIndex((elem: User) => elem.id === id );
       users.splice(index, 1);
