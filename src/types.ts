@@ -1,10 +1,7 @@
 export type User = {
-  name: string,
-  id: string
-}
-
-export type UserList = User[];
-
-export type DataShape = {
-  userList: User[]
+  email: string,
+  id: number,
+  first_name: string,
+  last_name: string,
+  avatar: string
 }
