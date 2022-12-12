@@ -19,7 +19,6 @@ export default createStore({
     getUsersFromApi() {
       axios.get("https://reqres.in/api/users").then((response) => {
         this.commit('setUsers',  _.get(response, 'data.data'));
-        console.log(this.state.users)
       });
     },
     getUserById(store, id) {
