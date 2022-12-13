@@ -5,20 +5,26 @@ import type { User } from '@/types';
 
 export default createStore({
   state: {
-    users: []
+    users: [],
+    loading: true
   },
   getters: {
     getUsers: state => state.users,
+    loading: state => state.loading
   },
   mutations: {
     setUsers(state, payload) {
       state.users = payload;
+    },
+    setLoading(state, payload) {
+      state.loading = payload;
     }
   },
   actions: {
     getUsersFromApi() {
       axios.get("https://reqres.in/api/users").then((response) => {
         this.commit('setUsers',  _.get(response, 'data.data'));
+        this.commit('setLoading',  false);
       });
     },
     getUserById(store, id) {

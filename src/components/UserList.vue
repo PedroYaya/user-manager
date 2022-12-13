@@ -1,10 +1,10 @@
 <template>
-  <div class="list-container">
+  <div v-if="!loading" class="list-container">
     <div v-for="(user, index) in getUsers" :key="index">
       <UserCard 
         :user="user"
         @open-delete-modal="openDeleteModal"
-      ></UserCard>
+      />
     </div>
 
     <DeleteModal 
@@ -20,6 +20,7 @@ import { defineComponent } from 'vue';
 import { mapGetters } from 'vuex';
 import type { User } from '@/types';
 import UserCard from '@/components/UserCard.vue';
+import DeleteModal from '@/components/UserCard.vue';
 
 export default defineComponent({
   name: 'UserList',
@@ -36,30 +37,33 @@ export default defineComponent({
   },
 
   components: {
-    UserCard
+    UserCard,
+    DeleteModal
   },
 
   computed: {
     ...mapGetters([
-      "getUsers"
+      "getUsers",
+      "loading"
     ])
   },
 
   methods: {
     openDeleteModal(user: User) {
-    // this.showDeleteModal = true;
-    // this.selectedUserId = user.id;
+      console.log(user)
+      this.showDeleteModal = true;
+      this.selectedUserId = user.id;
     },
     closeDeleteModal() {
-    // this.showDeleteModal = false;
-    // this.selectedUserId = null;
+      this.showDeleteModal = false;
+      this.selectedUserId = null;
     },
     deleteUser() {
-    // this.$store.dispatch('deleteUser', this.selectedUserId);
+      this.$store.dispatch('deleteUser', this.selectedUserId);
       this.closeDeleteModal();
     }
   }
-} as any);
+});
 </script>
 
 

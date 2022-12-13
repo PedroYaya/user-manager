@@ -35,7 +35,7 @@ export default defineComponent({
       required: true
     }
   },
-
+  
   computed: {
     name(): string {      
       return `${this.user.first_name} ${this.user.last_name}`;
