@@ -22,7 +22,6 @@
 
 <script lang="ts">
 import { defineComponent } from 'vue';
-import { mapGetters } from 'vuex';
 import type { PropType } from 'vue';
 import type { User } from '@/types';
 
@@ -55,9 +54,8 @@ export default defineComponent({
       this.$emit('open-delete-modal', this.user);
     }
   }
-} as any);
+});
 </script>
-
 
 <style lang="scss">
 

@@ -50,7 +50,6 @@ export default defineComponent({
 
   methods: {
     openDeleteModal(user: User) {
-      console.log(user)
       this.showDeleteModal = true;
       this.selectedUserId = user.id;
     },

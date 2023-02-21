@@ -28,13 +28,21 @@ export default createStore({
       });
     },
     getUserById(store, id) {
-      const users = _.get(store, 'state.users') || [];
-      return users.find((elem: User) => elem.id === id );
+      const users = _.get(store, 'state.users');
+      for (const item in users) {
+        if (users[item].id == id) {
+          return users[item];
+        }
+      }
+      return null;
     },
     editUser(store, user: User) {
-      const users: User[] = _.get(store, 'state.users') || [];
-      const index = users.findIndex((elem: User) => elem.id === user.id );
-      users.splice(index, 1, user);
+      const users = _.get(store, 'state.users');
+      for (const item in users) {
+        if (users[item].id == user.id) {
+          users[item] = user;
+        }
+      }
     },
     deleteUser(store, id: number) {
       const users = _.get(store, 'state.users') || [];
