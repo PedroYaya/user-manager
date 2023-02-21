@@ -20,7 +20,7 @@ import { defineComponent } from 'vue';
 import { mapGetters } from 'vuex';
 import type { User } from '@/types';
 import UserCard from '@/components/UserCard.vue';
-import DeleteModal from '@/components/UserCard.vue';
+import DeleteModal from '@/components/DeleteModal.vue';
 
 export default defineComponent({
   name: 'UserList',

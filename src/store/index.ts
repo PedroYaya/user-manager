@@ -1,4 +1,5 @@
 import { createStore } from 'vuex';
+import { toRaw } from 'vue'
 import axios from 'axios';
 import _ from 'lodash'
 import type { User } from '@/types';
@@ -28,25 +29,17 @@ export default createStore({
       });
     },
     getUserById(store, id) {
-      const users = _.get(store, 'state.users');
-      for (const item in users) {
-        if (users[item].id == id) {
-          return users[item];
-        }
-      }
-      return null;
+      const users = toRaw(_.get(store, 'state.users')) || [];
+      return users.find(elem => elem.id == id );
     },
     editUser(store, user: User) {
-      const users = _.get(store, 'state.users');
-      for (const item in users) {
-        if (users[item].id == user.id) {
-          users[item] = user;
-        }
-      }
+      const users = toRaw(_.get(store, 'state.users')) || [];
+      const index = users.findIndex(elem => elem.id === user.id );
+      users.splice(index, 1, user);
     },
-    deleteUser(store, id: number) {
-      const users = _.get(store, 'state.users') || [];
-      const index = store.state.users.findIndex((elem: User) => elem.id === id );
+    deleteUser(store, id) {
+      const users = toRaw(_.get(store, 'state.users')) || [];
+      const index = store.state.users.findIndex(elem => elem.id === id );
       users.splice(index, 1);
     }
   }
